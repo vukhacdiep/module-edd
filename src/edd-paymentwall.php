@@ -32,15 +32,15 @@ function paymentwall_add_settings($settings) {
 		),
 		array(
 			'id' => 'paymentwall_application_key',
-			'name' => __('Paymentwall Application Key', 'paymentwall'),
-			'desc' => __('Enter your Paymentwall Application Key that can be found in Application Settings inside of your Paymentwall Merchant Account', 'paymentwall'),
+			'name' => __('Paymentwall Project Key', 'paymentwall'),
+			'desc' => __('Enter your Paymentwall Project Key that can be found in Project Settings inside of your Paymentwall Merchant Account', 'paymentwall'),
 			'type' => 'text',
 			'size' => '32'
 		),
 		array(
 			'id' => 'paymentwall_secret_key',
 			'name' => __('Paymentwall Secret Key', 'paymentwall'),
-			'desc' => __('Enter your Paymentwall Secret Key that can be found in Application Settings inside of your Paymentwall Merchant Account', 'paymentwall'),
+			'desc' => __('Enter your Paymentwall Secret Key that can be found in Project Settings inside of your Paymentwall Merchant Account', 'paymentwall'),
 			'type' => 'text',
 			'size' => '32'
 		),
@@ -107,7 +107,7 @@ Payment processing part
 function edd_initialize_paymentwall_lib() {
 	global $edd_options;
 
-	require_once plugin_dir_path(__FILE__) . 'libs/paymentwall.php';
+	require_once plugin_dir_path(__FILE__) . 'paymentwall-php/lib/paymentwall.php';
 
 	Paymentwall_Base::setApiType(Paymentwall_Base::API_GOODS);
 	Paymentwall_Base::setAppKey($edd_options['paymentwall_application_key']);
@@ -161,7 +161,8 @@ function edd_process_paymentwall_purchase( $purchase_data ) {
         		'email' => $purchase_data['user_email'],
         		'country_code' => 'US',
         		'test_mode' => 1,
-        		'sign_version' => Paymentwall_Base::SIGNATURE_VERSION_3
+        		'sign_version' => Paymentwall_Base::SIGNATURE_VERSION_3,
+				'integration_module' => 'easy_digital_downloads'
     		)
     	);
 
