@@ -160,7 +160,6 @@ function edd_process_paymentwall_purchase( $purchase_data ) {
         		'success_url' => add_query_arg( 'payment-confirmation', 'paymentwall', get_permalink( $edd_options['success_page'] ) ),
         		'email' => $purchase_data['user_email'],
         		'country_code' => 'US',
-        		'test_mode' => 1,
         		'sign_version' => Paymentwall_Base::SIGNATURE_VERSION_3,
 				'integration_module' => 'easy_digital_downloads'
     		)
